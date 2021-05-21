@@ -28,16 +28,17 @@ const useCalc = (event) => {
         }
 
         if (count === 2 && isNaN(e) && e !== "." && e !== "<-") {
+            operation[0] = operate(operation[0], operation[1], operation[2]);
+
             if (e === "=") {
-                screen$$.value = operate(operation[0], operation[1], operation[2]);
-                operation[0] = operate(operation[0], operation[1], operation[2]);
+                screen$$.value = operation[0];
                 equalPushed = true;
-            } else {
-                operation[0] = operate(operation[0], operation[1], operation[2]);
             }
+
             operation.pop();
             operation.pop();
             count = 0;
+            console.log(operation);
         }
 
         if (!isNaN(e) || e === ".") {
@@ -62,8 +63,8 @@ const clear = () => {
 };
 
 const operate = (num1, operator, num2) => {
-    num1 = parseInt(num1);
-    num2 = parseInt(num2);
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     console.log(num1, num2);
     result = 0;
 
