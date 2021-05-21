@@ -3,15 +3,15 @@ const screen$$ = document.body.querySelector(".pantalla");
 
 const operation = [];
 let count = 0;
-let equal = false;
+let equalPushed = false;
 
 const useCalc = (event) => {
     if (event.target.value != undefined) {
         const e = event.target.value;
 
-        if (equal === true) {
+        if (equalPushed === true) {
             clear();
-            equal = false;
+            equalPushed = false;
         }
 
         if (e === "<-") {
@@ -31,7 +31,7 @@ const useCalc = (event) => {
             if (e === "=") {
                 screen$$.value = operate(operation[0], operation[1], operation[2]);
                 operation[0] = operate(operation[0], operation[1], operation[2]);
-                equal = true;
+                equalPushed = true;
             } else {
                 operation[0] = operate(operation[0], operation[1], operation[2]);
             }
@@ -76,12 +76,16 @@ const operate = (num1, operator, num2) => {
             break;
         case "/":
             result = num1 / num2;
+            break;
         case "*":
             result = num1 * num2;
+            break;
         case "-":
             result = num1 - num2;
+            break;
         case "+":
             result = num1 + num2;
+            break;
         default:
             break;
     }
